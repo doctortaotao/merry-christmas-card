@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣诞快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        /* 卡片容器 */
+        .card {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        /* 卡片边缘装饰 */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 3px solid #c62828;
+            border-radius: 15px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* 标题 */
+        .title {
+            color: #c62828;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* 祝福语区域 */
+        .message-box {
+            background: #fff9e6;
+            padding: 30px 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #2e7d32;
+            text-align: left;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 祝福文字 */
+        .message {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* 签名 */
+        .signature {
+            font-size: 1.3em;
+            color: #c62828;
+            margin-top: 30px;
+            font-style: italic;
+            font-weight: bold;
+            text-align: right;
+            animation: slideIn 1s ease-out 0.5s both;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* 装饰图标 */
+        .icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon {
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .icon:hover {
+            transform: scale(1.3);
+        }
+        
+        .icon:nth-child(1) { animation-delay: 0s; color: #c62828; }
+        .icon:nth-child(2) { animation-delay: 0.3s; color: #2e7d32; }
+        .icon:nth-child(3) { animation-delay: 0.6s; color: #1565c0; }
+        .icon:nth-child(4) { animation-delay: 0.9s; color: #ff8f00; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* 雪花 */
+        .snowflake {
+            position: fixed;
+            top: -20px;
+            color: white;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.7;
+            animation: snowFall linear forwards;
+        }
+        
+        @keyframes snowFall {
+            to { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* 心跳动画 */
+        .heartbeat {
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* 手机适配 */
+        @media (max-width: 600px) {
+            .card { padding: 30px 20px; }
+            .title { font-size: 2em; }
+            .message { font-size: 1.2em; }
+            .icon { font-size: 30px; }
+        }
+        
+        /* 简单按钮 */
+        .simple-btn {
+            background: linear-gradient(45deg, #c62828, #ff5252);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(198, 40, 40, 0.4);
+        }
+        
+        .simple-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 标题 -->
+        <div class="title">
+            <span class="heartbeat">🎄</span>
+            圣诞快乐
+            <span class="heartbeat">🎅</span>
+        </div>
+        
+        <!-- 祝福语 -->
+        <div class="message-box">
+            <!-- ========== 修改这里的祝福语 ========== -->
+            <div class="message">
+                陶子酱：<br><br>
+                愿这个圣诞节<br>
+                带给你开心和快乐。<br>
+                祝你天天高兴<br>
+                健健康康。<br><br>
+                越来越漂亮。
+            </div>
+            <!-- ========== 修改结束 ========== -->
+        </div>
+        
+        <!-- 装饰图标 -->
+        <div class="icons">
+            <div class="icon" onclick="createEffect('❄️')">❄️</div>
+            <div class="icon" onclick="createEffect('🌟')">🌟</div>
+            <div class="icon" onclick="createEffect('🎁')">🎁</div>
+            <div class="icon" onclick="createEffect('✨')">✨</div>
+        </div>
+        
+        <!-- 签名 -->
+        <!-- ========== 修改这里的签名 ========== -->
+        <div class="signature">—— 你的好朋友 [韬]</div>
+        <!-- ========== 修改结束 ========== -->
+        
+        <!-- 简单按钮 -->
+        <button class="simple-btn" onclick="createSnowfall()">
+            点击飘雪 ❄️
+        </button>
+    </div>
+
+    <script>
+        // 创建飘雪效果
+        function createSnowfall() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const snowflake = document.createElement('div');
+                    snowflake.className = 'snowflake';
+                    snowflake.innerHTML = '❄';
+                    snowflake.style.left = Math.random() * 100 + 'vw';
+                    snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                    snowflake.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                    
+                    document.body.appendChild(snowflake);
+                    
+                    // 雪花落地后移除
+                    setTimeout(() => {
+                        snowflake.remove();
+                    }, 8000);
+                }, i * 200);
+            }
+        }
+        
+        // 图标点击效果
+        function createEffect(emoji) {
+            const effect = document.createElement('div');
+            effect.innerHTML = emoji;
+            effect.style.position = 'fixed';
+            effect.style.left = Math.random() * 80 + 10 + 'vw';
+            effect.style.top = Math.random() * 80 + 10 + 'vh';
+            effect.style.fontSize = '40px';
+            effect.style.opacity = '1';
+            effect.style.pointerEvents = 'none';
+            effect.style.zIndex = '9999';
+            effect.style.animation = 'popEffect 1.5s ease-out forwards';
+            
+            // 添加动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes popEffect {
+                    0% { 
+                        transform: scale(0.5) rotate(0deg);
+                        opacity: 0;
+                    }
+                    50% { 
+                        transform: scale(1.3) rotate(180deg);
+                        opacity: 1;
+                    }
+                    100% { 
+                        transform: scale(0) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(effect);
+            
+            // 动画结束后移除
+            setTimeout(() => {
+                effect.remove();
+                if (document.head.contains(style)) {
+                    document.head.removeChild(style);
+                }
+            }, 1500);
+        }
+        
+        // 页面加载时创建一些雪花
+        window.addEventListener('load', function() {
+            // 初始飘雪
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createSnowfall, i * 500);
+            }
+            
+            // 卡片入场动画
+            const card = document.querySelector('.card');
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.8s ease-out';
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            }, 300);
+            
+            console.log('🎄 简洁圣诞贺卡已加载！');
+            console.log('❄️ 点击按钮可以飘雪');
+            console.log('✨ 点击图标有特效');
+        });
+        
+        // 自动飘雪（每10秒一次）
+        setInterval(() => {
+            createSnowfall();
+        }, 10000);
+    </script>
+</body>
+</html>
